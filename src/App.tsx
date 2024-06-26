@@ -46,6 +46,7 @@ const App = () => {
         <div className={styles.div_box}>
             {simpsons.map((value, index) => (
                 <Character
+                    key={index}
                     index={numToStr(index+1)}
                     name={value.name}
                     surname={value.surname}
