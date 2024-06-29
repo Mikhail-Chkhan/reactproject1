@@ -12,7 +12,7 @@ const App:FC = () => {
 
     const [users, setUsers] = useState<IUser[]>([]);
     const [posts, setPosts] = useState<IPost[]>();
-    const [userId, setuserId] = useState<number>(0);
+    const [UserId, setUserId] = useState<number>(0);
 
     useEffect(() => {
       getUsers()
@@ -22,15 +22,28 @@ const App:FC = () => {
         });
   }, []);
 
-  // console.log(".")
+    useEffect(() => {
+        if (UserId !== 0) {
+
+        getPosts(UserId)
+            .then(value => {
+                let posts = value.data.posts
+                console.log(posts)
+                setPosts(posts)
+            })
+    }}, [UserId]);
+
+
+
 
    const clickButton = (id:number)=> {
     console.log(id)
-            getPosts(id)
-           .then(value => {
-               let posts = value.data.posts
-               console.log(posts)
-           setPosts(posts)});
+       setUserId(id)
+           //  getPosts(id)
+           // .then(value => {
+           //     let posts = value.data.posts
+           //     console.log(posts)
+           // setPosts(posts)});
     }
 
 
