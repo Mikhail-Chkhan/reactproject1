@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import IPost from "../../model/IPost";
 
-const PostComponents:FC<IPost> = ({id, title, tags,body}) => {
+const PostComponent:FC<IPost> = ({id, title, tags,body}) => {
     return (
         <div
         className={"boxAllPost"}>
@@ -16,4 +16,4 @@ const PostComponents:FC<IPost> = ({id, title, tags,body}) => {
     );
 };
 
-export default PostComponents;
+export default PostComponent;
