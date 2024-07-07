@@ -26,7 +26,7 @@ class UsersComponent extends Component<{}, MyState> {
         getUsers().then(response => {
             const data: IUsers = response.data;
             if (data.users){
-            this.setState({users: data.users})};
+            this.setState({users: data.users})}
         })
     }
 
@@ -68,7 +68,6 @@ class UsersComponent extends Component<{}, MyState> {
                     posts.map(post => (
                         <div key={post.id}>
                             <PostComponent
-                                id={post.id}
                                 title={post.title}
                                 body={post.body}
                             />

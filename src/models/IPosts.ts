@@ -1,6 +1,6 @@
 import React from "react";
 export default interface IPost {
-    id:number,
+    id?:number,
     title:string,
     body:string
     tags?: [string]
