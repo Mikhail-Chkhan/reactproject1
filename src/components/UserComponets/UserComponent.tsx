@@ -12,7 +12,9 @@ class UserComponent extends Component<IUser> {
                 <div> {firstName} {lastName} {maidenName}</div>
 
                 <button
-                onClick={point}>"Click me...</button>
+                onClick={()=> {
+                    point(id)
+                }}>"Click me...</button>
 
             </div>
 
