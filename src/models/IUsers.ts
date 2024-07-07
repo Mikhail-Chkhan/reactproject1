@@ -6,7 +6,7 @@ export default interface IUser {
     lastName: string;
     maidenName: string;
     children?: React.ReactNode;
-    point?: (id: number) => void;
+    point: (id: number) => void;
 }
 
 export interface IUsers {

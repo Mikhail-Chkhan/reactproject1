@@ -37,6 +37,7 @@ class UsersComponent extends Component<{}, MyState> {
                             firstName={user.firstName}
                             lastName={user.lastName}
                             maidenName={user.maidenName}
+                            point={user.point}
                         />
 
             </div>
