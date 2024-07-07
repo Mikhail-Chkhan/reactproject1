@@ -7,7 +7,7 @@ class PostComponent extends Component<IPost> {
     render() {
         const { id, title, body, tags} = this.props;
         return (
-            <div><h2>{title}</h2> <p>{body}</p> </div>
+            <div className={"divPost"}><h2>{title}</h2> <p>{body}</p> </div>
         );
     }
 }

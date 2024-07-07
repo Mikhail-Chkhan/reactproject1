@@ -1,0 +1,16 @@
+.divUser {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    margin: 4px;
+
+}
+.buttonUser{
+
+    width: 250px;
+    height: 25px;
+    /*background-color: #65bfd9;*/
+    color: #d37000;
+    border-radius: 2px;
+
+}

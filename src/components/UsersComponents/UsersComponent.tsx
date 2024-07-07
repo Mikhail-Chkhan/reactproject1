@@ -5,6 +5,7 @@ import UserComponent from "../UserComponets/UserComponent";
 import {getPosts} from "../../service/post.api.service";
 import IPost, {IPosts} from "../../models/IPosts";
 import PostComponent from "../PostComponents/PostComponent";
+import styles from "./UsersComponent.module.css"
 
 type MyState = {
     users: IUser[];
@@ -20,7 +21,6 @@ class UsersComponent extends Component<{}, MyState> {
             users: []
         };
     }
-
 
     componentDidMount() {
         getUsers().then(response => {
@@ -44,10 +44,12 @@ class UsersComponent extends Component<{}, MyState> {
         const {posts} = this.state
          console.log(this.state.users);
         return (
-            <div>
+            <div
+            className={styles.divBox}
+            >
                 {
                     users.map(user => (
-                        <div key={user.id}>
+                        <div>
                             <UserComponent
                                 id={user.id}
                                 firstName={user.firstName}
@@ -62,7 +64,7 @@ class UsersComponent extends Component<{}, MyState> {
 
 
 
-                };
+                }
 
                 {
                     posts.map(post => (

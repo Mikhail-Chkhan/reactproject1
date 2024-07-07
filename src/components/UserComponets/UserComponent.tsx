@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import IUser from "../../models/IUsers";
-
+import styles from "./UserComponent.module.css"
 class UserComponent extends Component<IUser> {
 
     render() {
         const { id, firstName, lastName, maidenName, point } = this.props;
         return (
-            <div>
-
-                <div> {firstName} {lastName} {maidenName}</div>
+            <div
+            className={styles.divUser}>
 
                 <button
+                    className={styles.buttonUser}
                     onClick={() => {
                         point(id)
                     }}
-                    >click me
+                    >{firstName} {lastName} {maidenName}
                 </button>
 
             </div>
