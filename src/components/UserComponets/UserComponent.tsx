@@ -3,7 +3,6 @@ import IUser from "../../models/IUsers";
 
 class UserComponent extends Component<IUser> {
 
-    componentDidMount() {}
     render() {
         const { id, firstName, lastName, maidenName, point } = this.props;
         return (
