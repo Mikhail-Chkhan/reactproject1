@@ -13,7 +13,7 @@ type MyState = {
 }
 
 class UsersComponent extends Component<{}, MyState> {
-    constructor(props: {}) {
+    constructor(props: MyState) {
         super(props);
         this.state = {
             posts: [],
