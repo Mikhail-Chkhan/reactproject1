@@ -4,7 +4,7 @@ import {getUsers} from "../../service/user.api.servise";
 import UserComponent from "../UserComponets/UserComponent";
 
 type MyState = {
-    users: IUser[]|undefined;
+    users: IUser[];
 }
 
 class UsersComponent extends Component<{}, MyState> {
@@ -33,12 +33,12 @@ class UsersComponent extends Component<{}, MyState> {
                     users.map(user => (
                     <div key={user.id}>
                         <UserComponent
-                            {user.id}
-                            {user.firstName}
-                            {user.lastName}
-                            {user.maidenName}
+                            id={user.id}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
+                            maidenName={user.maidenName}
                         />
-                {/*<p>{user.firstName} {user.lastName}</p>*/}
+
             </div>
         ))}
             </div>

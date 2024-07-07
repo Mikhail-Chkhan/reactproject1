@@ -10,5 +10,5 @@ export default interface IUser {
 }
 
 export interface IUsers {
-    users?: IUser[]|undefined;
+    users?: IUser[];
 }
