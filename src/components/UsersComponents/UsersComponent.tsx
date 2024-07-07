@@ -25,7 +25,8 @@ class UsersComponent extends Component<{}, MyState> {
     componentDidMount() {
         getUsers().then(response => {
             const data: IUsers = response.data;
-            this.setState({users: data.users});
+            if (data.users){
+            this.setState({users: data.users})};
         })
     }
 
@@ -49,7 +50,7 @@ class UsersComponent extends Component<{}, MyState> {
             >
                 {
                     users.map(user => (
-                        <div>
+                        <div key={user.id}>
                             <UserComponent
                                 id={user.id}
                                 firstName={user.firstName}
@@ -60,9 +61,6 @@ class UsersComponent extends Component<{}, MyState> {
 
                         </div>
                     ))
-
-
-
 
                 }
 
