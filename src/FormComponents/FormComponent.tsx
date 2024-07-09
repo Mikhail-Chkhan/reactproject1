@@ -27,8 +27,8 @@ const FormComponent = () => {
         console.log(data)
         addPost(data).then(response => {
             const status: number = response.status;
-            console.log(response)
-            console.log(status)
+            // console.log(response)
+            // console.log(status)
             if (status === 201) {
                 alert("Post created successfully")
                 reset()
@@ -47,8 +47,8 @@ const FormComponent = () => {
                 {<input type="text" placeholder='body, enter text from 5 to 100 characters' {...register('body')}/>}
                 {errors.body && <p className={styles.errors}>{errors.body?.message}</p>}
                 {<input type="number"
-                        placeholder='UserId, enter number from 1 to 100 characters' {...register('UserId')}/>}
-                {errors.UserId && <p className={styles.errors}>{errors.UserId?.message}</p>}
+                        placeholder='UserId, enter number from 1 to 100 characters' {...register('userId')}/>}
+                {errors.userId && <p className={styles.errors}>{errors.userId?.message}</p>}
                 {<button disabled={!isValid}>Create</button>}
             </form>
 

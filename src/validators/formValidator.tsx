@@ -18,10 +18,10 @@ let postValidator: Joi.ObjectSchema<IForm> =
                 "string.min": "min: 5 characters",
                 "string.max": "max: 1000 characters",
             }),
-        UserId: Joi.number()
+        userId: Joi.number()
             .min(1)
-            .max(100)
-            .message("UserId must be from 1 to 100")
+            .max(10)
+            .message("UserId must be from 1 to 10")
 
     });
 

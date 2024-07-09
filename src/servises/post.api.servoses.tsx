@@ -11,7 +11,7 @@ let AxiosInstance = axios.create({
 })
 
 let addPost = (data:IForm):Promise<AxiosResponse<IStatus>> => {
-    return  AxiosInstance('/posts/')
+    return  AxiosInstance.post('/posts/',data)
 }
 
 export {addPost}
