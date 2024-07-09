@@ -1,0 +1,20 @@
+.divForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divForm>form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+}
+.divForm>form>input, .divForm>form>button {
+    margin: 3px;
+}
+.errors{
+    font-size: 10px;
+    margin: 2px;
+    color: red;
+
+}
