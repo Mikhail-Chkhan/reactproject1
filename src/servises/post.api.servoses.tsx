@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import IForm from "../modules/IForm";
+import IStatus from "../modules/IStatus";
 
 
 let AxiosInstance = axios.create({
@@ -9,7 +10,7 @@ let AxiosInstance = axios.create({
 
 })
 
-let addPost = (data:IForm):Promise<AxiosResponse<IForm>> => {
+let addPost = (data:IForm):Promise<AxiosResponse<IStatus>> => {
     return  AxiosInstance('/posts/')
 }
 
