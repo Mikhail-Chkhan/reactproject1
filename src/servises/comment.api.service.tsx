@@ -10,5 +10,9 @@ let AxiosInstance = axios.create({
 const getComments = ():Promise<AxiosResponse<IComment[]>> => {
     return AxiosInstance.get('/comments')
 }
-
 export default getComments
+
+const getCommentsByPostId = (postId:number):Promise<AxiosResponse<IComment[]>> => {
+    return AxiosInstance.get('/posts/'+postId+'/comments')
+}
+export {getCommentsByPostId}

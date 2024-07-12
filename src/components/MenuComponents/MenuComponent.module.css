@@ -1,0 +1,23 @@
+.divMenu{
+    width: 220px;
+    height: 100vh;
+    font-size: 20px;
+    margin-top: 30px;
+
+}
+.divLink {
+    width: 200px;
+    height: 35px;
+    background-color: #7dbb44;
+    padding-left: 10px;
+    margin: 2px;
+    border-radius: 2px;
+
+
+}
+.divLink>a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer
+}

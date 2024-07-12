@@ -1,28 +1,50 @@
 import React, {useEffect, useState} from 'react';
 import IPost from "../../modeles/IPost";
-import getPosts from "../../servises/post.api.service";
+import getPosts, {getPostByUserId} from "../../servises/post.api.service";
 import PostComponent from "../PostComponents/PostComponent";
+import {Outlet, useSearchParams} from "react-router-dom";
+import styles from "./PostsComponent.module.css"
 
 const PostsComponent = () => {
+    let [searchParams] = useSearchParams()
+    let userId = searchParams.get('userId')
+    console.log(userId)
+
     const [posts, setPosts] = useState<IPost[]>([])
 
+
     useEffect(() => {
-        getPosts().then(response => {
-        setPosts(response.data)
-        console.log(response.data)})
+        if (userId) {
+            getPostByUserId(parseFloat(userId)).then(response => {
+
+                    setPosts(response.data)
+                    console.log(response.data)
+                }
+            )
+        } else {
+            getPosts().then(response => {
+                    setPosts(response.data)
+                    console.log(response.data)
+                }
+            )
+        }
     }, []);
 
+
     return (
-        <div>
+        <div
+        className={styles.PostsBox}>
+            <Outlet/>
             {posts.map((post) =>
-            <PostComponent
-                key={post.id}
-                userId={post.userId}
-                id={post.id}
-                title={post.title}
-                body={post.body}/>)}
+                <PostComponent
+                    key={post.id}
+                    userId={post.userId}
+                    id={post.id}
+                    title={post.title}
+                    body={post.body}/>)}
         </div>
     );
 };
-
 export default PostsComponent;
+
+

@@ -1,0 +1,24 @@
+.divPost{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background-color: #7dbb44;
+    border: 1px solid white;
+    width: 900px;
+}
+.divPost>h3, .divPost>p {
+
+    padding-left: 5px;
+    height: 28px;
+    text-decoration: none;
+    background-color: #7dbb44;
+    color: white;
+}
+
+
+/*.link {*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*}*/
+
+

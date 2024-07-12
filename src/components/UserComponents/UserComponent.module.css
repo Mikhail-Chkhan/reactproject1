@@ -1,0 +1,31 @@
+.divUser{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer
+}
+.divId, .divName, .divPhone, .divEmail {
+    border: 1px solid white;
+    padding-left: 5px;
+    height: 28px;
+    text-decoration: none;
+    background-color: #7dbb44;
+}
+
+.divId {
+    width: 30px;
+}
+.divName {
+    width: 350px;
+}
+.divPhone {
+    width: 250px;
+}
+.divEmail {
+    width: 250px;
+}
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+

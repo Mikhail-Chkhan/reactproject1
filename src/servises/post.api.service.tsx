@@ -4,11 +4,15 @@ import IPost from "../modeles/IPost";
 
 let AxiosInstance = axios.create({
     baseURL: baseURL,
-    headers: {'Content-Type': 'application/json'}
+    headers: {'Content-Type': 'application/json'},
 })
 
-let getPosts = ():Promise<AxiosResponse<IPost[]>> => {
+let getPosts = (): Promise<AxiosResponse<IPost[]>> => {
     return AxiosInstance.get('/posts')
 }
-
 export default getPosts
+
+let getPostByUserId = (userId: number): Promise<AxiosResponse<IPost[]>> => {
+    return AxiosInstance.get(`/posts?userId=${userId}`);
+}
+export {getPostByUserId}

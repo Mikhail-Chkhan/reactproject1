@@ -1,0 +1,4 @@
+.divMainLayouts{
+    display: flex;
+    flex-direction: row;
+}
