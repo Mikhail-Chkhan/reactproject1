@@ -2,4 +2,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    border-radius: 2px;
+}
+.PostsBox>a {
+    text-decoration: none;
 }

@@ -1,12 +1,15 @@
-.divPost{
+.divPost {
     display: flex;
     flex-direction: column;
     cursor: pointer;
     background-color: #7dbb44;
     border: 1px solid white;
+    border-radius: 5px;
     width: 900px;
+    margin: 2px;
 }
-.divPost>h3, .divPost>p {
+
+.divPost > h3, .divPost > p {
 
     padding-left: 5px;
     height: 28px;

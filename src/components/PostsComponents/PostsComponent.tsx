@@ -8,7 +8,6 @@ import styles from "./PostsComponent.module.css"
 const PostsComponent = () => {
     let [searchParams] = useSearchParams()
     let userId = searchParams.get('userId')
-    console.log(userId)
 
     const [posts, setPosts] = useState<IPost[]>([])
 
@@ -16,15 +15,12 @@ const PostsComponent = () => {
     useEffect(() => {
         if (userId) {
             getPostByUserId(parseFloat(userId)).then(response => {
-
                     setPosts(response.data)
-                    console.log(response.data)
                 }
             )
         } else {
             getPosts().then(response => {
                     setPosts(response.data)
-                    console.log(response.data)
                 }
             )
         }

@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import PostsPage from "./pages/postsPage";
 import UsersPage from "./pages/usersPage";
 import CommentsPage from "./pages/commentsPage";
+import CommentsToPostComponent from "./components/CommentsToPostComponents/CommentsToPostComponent";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
             {index: true, element: <UsersPage/>},
             {path:"users", element:<UsersPage/>},
             {path:"posts", element:<PostsPage/>, children:[{
-                path:":id/comments", element:<CommentsPage/>
+                path:":postId/comments", element:<CommentsToPostComponent/>
                 }]},
             {path:"comments", element:<CommentsPage/>},
 
