@@ -25,7 +25,7 @@ const RegistrationFormComponent = () => {
             <form onSubmit={handleSubmit(auth)}>
                 <input type={"text"} placeholder={"username"} {...register("username")}/>
                 <input type={"text"} placeholder={"password"} {...register("password")}/>
-                <button>sing in</button>
+                <button>sing up</button>
             </form>
         </div>
     );
