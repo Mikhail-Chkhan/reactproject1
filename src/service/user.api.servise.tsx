@@ -3,6 +3,7 @@ import baseURL from "../constants/baseURL";
 import {IAuth} from "../models/IAuth";
 import {IToken} from "../models/IToken";
 import {IError} from "../models/IError";
+import {IUserResponse} from "../models/IUserResponse";
 
 type AuthResponse = IToken | IError;
 
@@ -11,8 +12,19 @@ let axiosInstance = axios.create({
 })
 
 let sing_in = async (data: IAuth): Promise<AxiosResponse<AuthResponse>> => {
-    let response:AxiosResponse<AuthResponse> = await axiosInstance.post<AuthResponse>("/auth", data);
+    let response: AxiosResponse<AuthResponse> = await axiosInstance.post<AuthResponse>("/auth", data);
     console.log(response)
     return response;
 }
-export {sing_in}
+
+let sing_up = async (data: IAuth): Promise<AxiosResponse<IUserResponse>> => {
+    let response: AxiosResponse<IUserResponse> = await axiosInstance.post<IUserResponse>("/users", data);
+    console.log(response)
+    return response
+}
+
+
+export {
+    sing_in,
+    sing_up
+}
