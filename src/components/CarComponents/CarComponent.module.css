@@ -1,0 +1,17 @@
+.divCar {
+    display: flex;
+    flex-direction: row;
+    /*height: 50px;*/
+    /*background-color: green;*/
+}
+.divCar>div {
+    /*margin: 5px 15px;*/
+    width: 150px;
+    height: 50px;
+    border: solid #a1bef5 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a1bef5;
+    font-size: 28px;
+}

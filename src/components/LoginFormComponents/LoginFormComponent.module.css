@@ -1,0 +1,22 @@
+.loginDivBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.loginDivForm {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #a1bef5;
+    color: white;
+    border-radius: 5px;
+}
+.loginDivForm>input,.loginDivForm>button {
+    width: 200px;
+    height: 30px;
+    margin: 5px;
+}
