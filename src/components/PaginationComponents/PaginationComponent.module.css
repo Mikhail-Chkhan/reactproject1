@@ -10,6 +10,7 @@
     color: #a1bef5;
     display: inline;
     margin: 2px;
+    cursor: pointer;
 }
 .currentPage {
     font-weight: bold;

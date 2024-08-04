@@ -38,19 +38,19 @@ const PaginationComponent: FC<IProps> = ({next, prev, total_pages}) => {
             for (let i = 1; i <= totalPage; i++) {
                 pages.push(i.toString());
             }
-        } else if (currentPage <= 2 && totalPage >= 8) {
+        } else if (currentPage <= 3 && totalPage >= 8) {
             for (let i = 1; i <= 5; i++) {
                 pages.push(i.toString());
             }
             pages.push("...");
             pages.push(totalPage.toString());
-        } else if (currentPage >= totalPage - 1 && totalPage >= 8) {
+        } else if (currentPage > totalPage - 3 && totalPage >= 8) {
             for (let i = totalPage - 4; i <= totalPage; i++) {
                 pages.push(i.toString());
             }
             pages.unshift("...");
             pages.unshift("1");
-        } else if (currentPage > 2 && currentPage < totalPage - 1 && totalPage >= 8) {
+        } else if (currentPage > 3 && currentPage <= totalPage - 3 && totalPage >= 8) {
             pages.push("1");
             pages.push("...");
             pages.push((currentPage - 1).toString());
