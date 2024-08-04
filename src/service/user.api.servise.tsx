@@ -20,9 +20,7 @@ let sing_in = async (data: IAuth): Promise<AxiosResponse<AuthResponse>> => {
 }
 
 let sing_up = async (data: IAuth): Promise<AxiosResponse<IUserResponse>> => {
-    let response: AxiosResponse<IUserResponse> = await axiosInstance.post<IUserResponse>("/users", data);
-    // console.log(response)
-    return response
+    return await axiosInstance.post<IUserResponse>("/users", data)
 }
 
 // @ts-ignore

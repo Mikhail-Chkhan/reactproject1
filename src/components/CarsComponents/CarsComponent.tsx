@@ -3,15 +3,29 @@ import CarComponent from "../CarComponents/CarComponent";
 import {getCars} from "../../service/cars.api.service";
 import {ICar} from "../../models/ICar";
 import {refresh} from "../../service/user.api.servise";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import PaginationComponent from "../PaginationComponents/PaginationComponent";
+import {CarsResponse} from "../../models/CarsResponse";
 
 const CarsComponent = () => {
     const [cars, setCars] = useState<ICar[]>([]);
+    const [carsResponse, setCarsResponse] = useState<CarsResponse>({
+        items: [],
+        next: null,
+        prev: null,
+        total_items: 0,
+        total_pages: 0
+    })
     let navigation = useNavigate()
+    let [query] = useSearchParams()
 
     let getItemCar = async () => {
         try {
-            await getCars().then(response => setCars(response.data.items))
+            await getCars(query.get('page') || '1').then(response => {
+                let dataResponse= response.data
+                setCarsResponse(dataResponse)
+                setCars(response.data.items)
+            })
         }
         catch (e){
             try {
@@ -26,12 +40,9 @@ const CarsComponent = () => {
 
     useEffect(() => {
         getItemCar()
-        // getCars().then(response => {
-        //     let carsResponse: ICar[] = response.data.items
-        //     setCars(carsResponse)
-        // })
 
-    }, []);
+
+    }, [query]);
 
     return (
         <div>
@@ -44,6 +55,11 @@ const CarsComponent = () => {
                     year={car.year}
                 />
             ))}
+            <PaginationComponent
+                next={carsResponse?.next}
+                prev={carsResponse?.prev}
+                total_pages={carsResponse?.total_pages}
+            />
         </div>
     );
 };

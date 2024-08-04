@@ -23,8 +23,8 @@ axiosInstance.interceptors.request.use(requestObject => {
 })
 
 
-let getCars = async (): Promise<AxiosResponse<CarsResponse>> => {
-    let response: AxiosResponse<CarsResponse> = await axiosInstance.get<CarsResponse>("/cars");
+let getCars = async (page: string = '1'): Promise<AxiosResponse<CarsResponse>> => {
+    let response: AxiosResponse<CarsResponse> = await axiosInstance.get<CarsResponse>("/cars",{params: {page: page}});
     console.log(response)
     return response;
 }

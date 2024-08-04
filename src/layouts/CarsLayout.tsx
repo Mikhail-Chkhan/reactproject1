@@ -1,7 +1,7 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import CarsMenuComponent from "../../components/CarsMenuComponents/CarsMenuComponent";
-import styles from "./CarsLayout.module.css"
+import CarsMenuComponent from "../components/CarsMenuComponents/CarsMenuComponent";
+import styles from "./MainAuthLayouts/CarsLayout.module.css"
 
 const CarsLayout = () => {
     return (

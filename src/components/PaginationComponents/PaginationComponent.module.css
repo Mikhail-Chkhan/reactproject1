@@ -1,0 +1,17 @@
+.paginatorBox {
+    margin: 10px;
+}
+.allPage, .currentPage{
+    width: 25px;
+    height: 25px;
+    border: solid #a1bef5 1px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #a1bef5;
+    display: inline;
+    margin: 2px;
+}
+.currentPage {
+    font-weight: bold;
+    font-size: 15px;
+}
