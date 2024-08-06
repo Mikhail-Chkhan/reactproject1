@@ -7,6 +7,7 @@
     border-radius: 5px;
     width: 900px;
     margin: 2px;
+    text-decoration: none;
 }
 
 .divPost > h3, .divPost > p {
@@ -16,6 +17,7 @@
     text-decoration: none;
     background-color: #7dbb44;
     color: white;
+
 }
 
 

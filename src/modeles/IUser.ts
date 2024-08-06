@@ -5,13 +5,3 @@ export default interface IUser{
     email:string,
     phone:string
 }
-
-interface IUserHeaders {
-    id:string,
-    name:string,
-    username:string,
-    email:string,
-    phone:string
-}
-
-export type {IUserHeaders}

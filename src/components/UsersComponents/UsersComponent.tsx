@@ -1,20 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import IUser from "../../modeles/IUser";
-import getUsers from "../../servises/user.api.service";
 import UserComponent from "../UserComponents/UserComponent";
 import styles from "./UsersComponent.module.css"
-import {getPostByUserId} from "../../servises/post.api.service";
-
+import {useContextProvider} from "../../context/ContextProvider";
 const UsersComponent = () => {
     const [users, setUsers] = useState<IUser[]>([])
+    const {userStore:{allUsers}} = useContextProvider();
 
-    useEffect(() => {
-        getUsers().then(response => {
-            setUsers(response.data)
-        console.log(response.data)})
-    }, []);
-
-
+    useEffect(() => {setUsers(allUsers)}, [allUsers]);
 
     return (
         <div className={styles.UserBox}>

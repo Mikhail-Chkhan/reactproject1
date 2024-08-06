@@ -2,15 +2,13 @@ import React, {useEffect, useState} from 'react';
 import IComment from "../../modeles/IComment";
 import getComments from "../../servises/comment.api.service";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import PaginationComponent from "../PaginationComponents/PaginationComponent";
+import {useContextProvider} from "../../context/ContextProvider";
 const CommentsComponent = () => {
 
     const [comments, setComments] = useState<IComment[]>([])
-
-    useEffect(() => {
-        getComments().then(response =>
-        setComments(response.data))
-    }, []);
+    
+    const {commentsStore:{allComments}} = useContextProvider();
+    useEffect(() => setComments(allComments), [allComments, comments]);
 
     return (
         <div>
@@ -22,7 +20,6 @@ const CommentsComponent = () => {
                     name={comment.name}
                     email={comment.email}
                     body={comment.body}/>)}
-            <PaginationComponent/>
         </div>
     );
 };

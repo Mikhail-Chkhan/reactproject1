@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const PostComponent:FC<IPost> = ({id,userId,title,body} ) => {
 
     return (
-        <Link to={`${id}/comments`}>
+        <Link to={`/posts/${id}/comments`}>
         <div
         className={styles.divPost}>
             <h3>{title} </h3>

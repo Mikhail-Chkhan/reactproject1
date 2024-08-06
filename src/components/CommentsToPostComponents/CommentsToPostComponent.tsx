@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import IComment from "../../modeles/IComment";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import {getCommentsByPostId} from "../../servises/comment.api.service";
+import {useContextProvider} from "../../context/ContextProvider";
 
 const CommentsToPostComponent = () => {
     let {postId} = useParams()
-    console.log(`postId: ${postId}`)
     const [comments, setComments] = useState<IComment[]>([])
+    const {commentsStore:{allComments}} = useContextProvider()
 
 
     useEffect(() => {
@@ -16,10 +16,10 @@ const CommentsToPostComponent = () => {
                 top: 0,
                 behavior: 'smooth'
             });
-            getCommentsByPostId(+postId).then(response => setComments(response.data))
+            setComments(allComments.filter(value => (value.postId).toString() === postId))
         }
 
-    },[postId]);
+    },[allComments, postId]);
 
     return (
         <div>
