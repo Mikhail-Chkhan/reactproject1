@@ -1,23 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import IPost from "../../modeles/IPost";
 import PostComponent from "../PostComponents/PostComponent";
 import {useSearchParams} from "react-router-dom";
 import styles from "./PostsComponent.module.css";
-import {useContextProvider} from "../../context/store";
+import useStore from "../../context/store";
+import IPost from "../../modeles/IPost";
 
 const PostsComponent = () => {
     let [searchParams] = useSearchParams();
     let userId = searchParams.get('userId');
+    const [posts, setPotsts] = useState<IPost[]>([])
 
-    const [posts, setPosts] = useState<IPost[]>([]);
-    const {postStore: {allPosts}} = useContextProvider();
+const {postSlice:{allPosts}} = useStore()
+
 
     useEffect(() => {
         if (userId) {
-            const filteredPosts = allPosts.filter(post => (post.userId).toString() === userId);
-            setPosts(filteredPosts);
+            setPotsts(allPosts.filter(post => (post.userId).toString() === userId));
+
         } else {
-            setPosts(allPosts);
+            setPotsts(allPosts);
         }
     }, [userId, allPosts]);
 

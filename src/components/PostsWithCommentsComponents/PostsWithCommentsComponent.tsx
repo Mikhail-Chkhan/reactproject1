@@ -1,11 +1,12 @@
 import React, {useMemo} from 'react';
-import {useContextProvider} from "../../context/store";
 import PostComponent from "../PostComponents/PostComponent";
 import CommentComponent from "../CommentComponent/CommentComponent";
 import styles from "../PostsComponents/PostsComponent.module.css"
+import useStore from "../../context/store";
 
 const PostsWithCommentsComponent = () => {
-    const {postStore: {allPosts}, commentsStore: {allComments}} = useContextProvider()
+    // const {postStore: {allPosts}, commentsStore: {allComments}} = useContextProvider()
+    const {postSlice:{allPosts},commentSlice:{allComments}} = useStore()
 
     const postsWithCommentsArray = useMemo(() => {
         return allPosts.map(post => {

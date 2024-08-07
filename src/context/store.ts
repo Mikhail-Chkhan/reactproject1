@@ -1,35 +1,83 @@
 import IUser from "../modeles/IUser";
 import IPost from "../modeles/IPost";
 import IComment from "../modeles/IComment";
-import {createContext, useContext} from "react";
+import create from "zustand";
 
-type StoreType = {
-    userStore: {
-        allUsers: IUser[]
-    },
-    postStore: {
-        allPosts: IPost[],
-        showComments: (flag:boolean,post: { id: number; title: string; body: string; userId: number }) => IComment[]
-    },
-    commentsStore: {
-        allComments: IComment[]
-    }
+type UserSlice = {
+    allUsers: IUser[];
+    loadUsers: (users: IUser[]) => void;
+    setFavoriteUser: (user: IUser) => void;
+    favoriteUser: IUser | null;
 }
 
+type PostSlice = {
+    allPosts: IPost[];
+    loadPosts: (posts: IPost[]) => void;
+    showComments: (flag: boolean, post: IPost) => IComment[];
+}
 
+type CommentSlice = {
+    allComments: IComment[];
+    loadComments: (comments: IComment[]) => void;
+}
 
+type StoreType = {
+    userSlice: UserSlice;
+    postSlice: PostSlice;
+    commentSlice: CommentSlice;
+}
 
-const defaultValue:StoreType = {
-    userStore: {
-        allUsers: []
+export const useStore = create<StoreType>((set, get) => ({
+    userSlice: {
+        allUsers: [],
+        loadUsers: (users) => {
+            set((state) => ({
+                ...state,
+                userSlice: {
+                    ...state.userSlice,
+                    allUsers: users,
+                },
+            }));
+        },
+        setFavoriteUser: (user) => {
+            set((state) => ({
+                ...state,
+                userSlice: {
+                    ...state.userSlice,
+                    favoriteUser: user,
+                },
+            }));
+        },
+        favoriteUser: null,
     },
-    postStore: {
+    postSlice: {
         allPosts: [],
-        showComments:()=> []
+        loadPosts: (posts) => {
+            set((state) => ({
+                ...state,
+                postSlice: {
+                    ...state.postSlice,
+                    allPosts: posts,
+                },
+            }));
+        },
+        showComments: (flag, post) => {
+            const { commentSlice: { allComments } } = get();
+            return flag ? allComments.filter(comment => comment.postId === post.id) : [];
+        },
     },
-    commentsStore: {
-        allComments: []
-    }
-};
-export const Store = createContext<StoreType>(defaultValue)
-export const useContextProvider = ():StoreType => useContext(Store)
+    commentSlice: {
+        allComments: [],
+        loadComments: (comments) => {
+            set((state) => ({
+                ...state,
+                commentSlice: {
+                    ...state.commentSlice,
+                    allComments: comments,
+                },
+            }));
+        },
+    },
+}));
+
+export default useStore;

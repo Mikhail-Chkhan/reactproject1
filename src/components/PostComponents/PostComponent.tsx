@@ -2,12 +2,13 @@ import React, {FC, useState} from 'react';
 import IPost from "../../modeles/IPost";
 import styles from "./PostComponent.module.css";
 import {Outlet} from "react-router-dom";
-import {useContextProvider} from "../../context/store";
+import {useStore} from "../../context/store";
 import IComment from "../../modeles/IComment";
 
 
 const PostComponent: FC<IPost> = ({id, userId, title, body, disableFoo=false}) => {
-    const {postStore: {showComments}} = useContextProvider();
+
+    const {postSlice:{showComments}}=useStore()
     const [comments, setComments] = useState<IComment[]>([]);
     const [flag, setFlag] = useState(false)
 

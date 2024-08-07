@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import IUser from "../../modeles/IUser";
+import React from 'react';
 import UserComponent from "../UserComponents/UserComponent";
 import styles from "./UsersComponent.module.css"
-import {useContextProvider} from "../../context/store";
-const UsersComponent = () => {
-    const [users, setUsers] = useState<IUser[]>([])
-    const {userStore:{allUsers}} = useContextProvider();
+import useStore from "../../context/store";
 
-    useEffect(() => {setUsers(allUsers)}, [allUsers]);
+
+const UsersComponent = () => {
+const {userSlice:{allUsers}} = useStore()
 
     return (
         <div className={styles.UserBox}>
-            {users.map((user) =>
+            {allUsers.map((user) =>
                 <UserComponent
                     key={user.id}
                     id={user.id}
