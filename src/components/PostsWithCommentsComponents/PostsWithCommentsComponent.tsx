@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useContextProvider} from "../../context/context";
+import {useContextProvider} from "../../context/store";
 import PostComponent from "../PostComponents/PostComponent";
 import CommentComponent from "../CommentComponent/CommentComponent";
 import styles from "../PostsComponents/PostsComponent.module.css"

@@ -3,7 +3,7 @@ import IPost from "../../modeles/IPost";
 import PostComponent from "../PostComponents/PostComponent";
 import {useSearchParams} from "react-router-dom";
 import styles from "./PostsComponent.module.css";
-import {useContextProvider} from "../../context/context";
+import {useContextProvider} from "../../context/store";
 
 const PostsComponent = () => {
     let [searchParams] = useSearchParams();

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import IComment from "../../modeles/IComment";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import {useContextProvider} from "../../context/context";
+import {useContextProvider} from "../../context/store";
 
 const CommentsToPostComponent = () => {
     let {postId} = useParams()

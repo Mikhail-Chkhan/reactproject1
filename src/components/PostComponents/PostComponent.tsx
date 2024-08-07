@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import IPost from "../../modeles/IPost";
 import styles from "./PostComponent.module.css";
 import {Outlet} from "react-router-dom";
-import {useContextProvider} from "../../context/context";
+import {useContextProvider} from "../../context/store";
 import IComment from "../../modeles/IComment";
 
 

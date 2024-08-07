@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Outlet} from "react-router-dom";
 import MenuComponent from "../../components/MenuComponents/MenuComponent";
 import styles from "./mainLayouts.module.css"
-import {Context} from "../../context/context";
+import {Store} from "../../context/store";
 import getUsers from "../../servises/user.api.service";
 import getPosts from "../../servises/post.api.service";
 import IUser from "../../modeles/IUser";
@@ -29,7 +29,7 @@ const MainLayouts = () => {
 
     return (
         <div className={styles.divMainLayouts}>
-            <Context.Provider value={
+            <Store.Provider value={
                 {
                     commentsStore: {allComments: comments},
                     postStore: {
@@ -41,7 +41,7 @@ const MainLayouts = () => {
             }>
                 <MenuComponent/>
                 <Outlet/>
-            </Context.Provider>
+            </Store.Provider>
         </div>
     );
 };

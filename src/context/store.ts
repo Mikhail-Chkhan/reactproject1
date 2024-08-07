@@ -31,5 +31,5 @@ const defaultValue:StoreType = {
         allComments: []
     }
 };
-export const Context = createContext<StoreType>(defaultValue)
-export const useContextProvider = ():StoreType => useContext(Context)
+export const Store = createContext<StoreType>(defaultValue)
+export const useContextProvider = ():StoreType => useContext(Store)
