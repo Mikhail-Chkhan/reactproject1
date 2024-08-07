@@ -78,6 +78,7 @@ export const useStore = create<StoreType>((set, get) => ({
             }));
         },
     },
-}));
+}
+));
 
 export default useStore;
