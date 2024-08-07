@@ -8,24 +8,28 @@ type StoreType = {
         allUsers: IUser[]
     },
     postStore: {
-        allPosts: IPost[]
+        allPosts: IPost[],
+        showComments: (flag:boolean,post: { id: number; title: string; body: string; userId: number }) => IComment[]
     },
     commentsStore: {
         allComments: IComment[]
     }
 }
 
+
+
+
 const defaultValue:StoreType = {
     userStore: {
         allUsers: []
     },
     postStore: {
-        allPosts: []
+        allPosts: [],
+        showComments:()=> []
     },
     commentsStore: {
         allComments: []
     }
 };
 export const Context = createContext<StoreType>(defaultValue)
-
 export const useContextProvider = ():StoreType => useContext(Context)

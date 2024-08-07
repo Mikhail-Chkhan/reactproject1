@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import IUser from "../../modeles/IUser";
 import UserComponent from "../UserComponents/UserComponent";
 import styles from "./UsersComponent.module.css"
-import {useContextProvider} from "../../context/ContextProvider";
+import {useContextProvider} from "../../context/context";
 const UsersComponent = () => {
     const [users, setUsers] = useState<IUser[]>([])
     const {userStore:{allUsers}} = useContextProvider();

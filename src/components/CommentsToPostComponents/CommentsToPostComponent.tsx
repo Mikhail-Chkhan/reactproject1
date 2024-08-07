@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import IComment from "../../modeles/IComment";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import {useContextProvider} from "../../context/ContextProvider";
+import {useContextProvider} from "../../context/context";
 
 const CommentsToPostComponent = () => {
     let {postId} = useParams()
@@ -12,10 +12,6 @@ const CommentsToPostComponent = () => {
 
     useEffect(() => {
         if (postId) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
             setComments(allComments.filter(value => (value.postId).toString() === postId))
         }
 

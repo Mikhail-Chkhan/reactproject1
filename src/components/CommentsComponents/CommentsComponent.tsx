@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import IComment from "../../modeles/IComment";
 import getComments from "../../servises/comment.api.service";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import {useContextProvider} from "../../context/ContextProvider";
+import {useContextProvider} from "../../context/context";
 const CommentsComponent = () => {
 
     const [comments, setComments] = useState<IComment[]>([])

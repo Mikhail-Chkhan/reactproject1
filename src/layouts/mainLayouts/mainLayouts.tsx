@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Outlet} from "react-router-dom";
 import MenuComponent from "../../components/MenuComponents/MenuComponent";
 import styles from "./mainLayouts.module.css"
-import {Context} from "../../context/ContextProvider";
+import {Context} from "../../context/context";
 import getUsers from "../../servises/user.api.service";
 import getPosts from "../../servises/post.api.service";
 import IUser from "../../modeles/IUser";
@@ -21,14 +21,21 @@ const MainLayouts = () => {
         getComments().then(response => setComments(response.data))
 
     }, []);
-    
+
+    const showCommentsToPost = (flag: boolean, post:IPost) => {
+        if (flag) {return  comments.filter(value => value.postId === post.id)}
+        else {return []}
+    }
+
     return (
         <div className={styles.divMainLayouts}>
-
             <Context.Provider value={
                 {
                     commentsStore: {allComments: comments},
-                    postStore: {allPosts: posts},
+                    postStore: {
+                        allPosts: posts,
+                        showComments: showCommentsToPost
+                    },
                     userStore: {allUsers: users},
                 }
             }>

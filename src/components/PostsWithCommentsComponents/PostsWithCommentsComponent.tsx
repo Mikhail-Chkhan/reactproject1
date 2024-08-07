@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useContextProvider} from "../../context/ContextProvider";
+import {useContextProvider} from "../../context/context";
 import PostComponent from "../PostComponents/PostComponent";
 import CommentComponent from "../CommentComponent/CommentComponent";
 import styles from "../PostsComponents/PostsComponent.module.css"
@@ -24,6 +24,7 @@ const PostsWithCommentsComponent = () => {
                         id={post.id}
                         title={post.title}
                         body={post.body}
+                        disableFoo={true}
                     />
                     {post.comments.map(comment => (
                         <CommentComponent
