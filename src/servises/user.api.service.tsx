@@ -1,14 +1,18 @@
-import axios, {AxiosResponse} from "axios";
-import baseURL from "../constants/baseURL";
-import IUser from "../modeles/IUser";
+import axios from "axios";
+import {baseUrl, urls} from "../constants/baseURL";
+import IUser from "../models/IUser";
 
-let AxiosInstance = axios.create({
-    baseURL: baseURL,
-    headers:{'Content-Type': 'application/json'}
-})
+let axiosInstance = axios.create({
+    baseURL: baseUrl,
+});
 
-const getUsers = ():Promise<AxiosResponse<IUser[]>> => {
-    return AxiosInstance.get('/users')
+export const userService = {
+    getAll: async (): Promise<IUser[]> => {
+        let response = await axiosInstance.get<IUser[]>(urls.users.base);
+        return response.data;
+    },
+    getById: async (id: number): Promise<IUser> => {
+        let response = await axiosInstance.get<IUser>(urls.users.byId(id));
+        return response.data;
+    }
 }
-
-export default getUsers

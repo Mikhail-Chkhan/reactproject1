@@ -1,39 +1,48 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import PostComponent from "../PostComponents/PostComponent";
 import {useSearchParams} from "react-router-dom";
 import styles from "./PostsComponent.module.css";
-import useStore from "../../context/store";
-import IPost from "../../modeles/IPost";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {postAction} from "../../redux/slices/postSlice";
+import {commentAction} from "../../redux/slices/commentSlice";
 
 const PostsComponent = () => {
     let [searchParams] = useSearchParams();
     let userId = searchParams.get('userId');
-    const [posts, setPotsts] = useState<IPost[]>([])
 
-const {postSlice:{allPosts}} = useStore()
+    let dispatch = useAppDispatch()
+    let {posts, error, isLoaded} = useAppSelector(state => state.postStore)
+
 
 
     useEffect(() => {
+        dispatch(commentAction.loadComments())
         if (userId) {
-            setPotsts(allPosts.filter(post => (post.userId).toString() === userId));
-
+            dispatch(postAction.loadPost(Number(userId)));///тут передаем 1 объет, а рендерится массив объектов
         } else {
-            setPotsts(allPosts);
+            dispatch(postAction.loadPosts());
         }
-    }, [userId, allPosts]);
+    }, [dispatch,userId]);
 
     return (
         <div className={styles.PostsBox}>
-            {posts.map((post) => (
-                <PostComponent
-                    key={post.id}
-                    userId={post.userId}
-                    id={post.id}
-                    title={post.title}
-                    body={post.body}
-                    disableFoo={false}
-                />
-            ))}
+
+            {error ? (
+                <h2>{error}</h2>
+            ) : !isLoaded ? (
+                <h2>...Loading</h2>
+            ) : (
+                posts.map((post) => (
+                        <PostComponent
+                            key={post.id}
+                            userId={post.userId}
+                            id={post.id}
+                            title={post.title}
+                            body={post.body}
+                            disableFoo={false}
+                        />
+                    )
+                ))}
         </div>
     );
 };

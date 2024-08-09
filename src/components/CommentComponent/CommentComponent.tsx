@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import IComment from "../../modeles/IComment";
+import IComment from "../../models/IComment";
 
 const CommentComponent: FC<IComment>= ({id, body, postId, name, email}) => {
     return (

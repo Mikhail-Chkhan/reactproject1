@@ -1,34 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import CommentComponent from "../CommentComponent/CommentComponent";
-import useStore from "../../context/store";
-import IComment from "../../modeles/IComment";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {commentAction} from "../../redux/slices/commentSlice";
 
 const CommentsToPostComponent = () => {
-    const { commentSlice: { allComments } } = useStore();
+    let dispatch = useAppDispatch()
+    let comment = useAppSelector(state => state.commentStore.comment)
+
     const { postId } = useParams<{ postId: string }>();
-    const [comments, setComments] = useState<IComment[]>([]);
 
     useEffect(() => {
         if (postId) {
-            setComments(allComments.filter(value => value.postId.toString() === postId));
+            dispatch(commentAction.loadComment(Number(postId)));
         }
-    }, [allComments, postId]);
+    }, [postId]);
 
-    return (
-        <div>
-            {comments.map((comment) => (
-                <CommentComponent
-                    key={comment.id}
-                    postId={comment.postId}
-                    id={comment.id}
-                    name={comment.name}
-                    email={comment.email}
-                    body={comment.body}
-                />
-            ))}
-        </div>
-    );
+    return <div>
+        {comment ? (<CommentComponent
+                key={comment.id}
+                postId={comment.postId}
+                id={comment.id}
+                name={comment.name}
+                email={comment.email}
+                body={comment.body}
+            />): <h2>not comment</h2>}
+
+    </div>;
 };
 
 export default CommentsToPostComponent;

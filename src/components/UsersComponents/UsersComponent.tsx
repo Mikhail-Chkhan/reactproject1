@@ -1,22 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import UserComponent from "../UserComponents/UserComponent";
-import styles from "./UsersComponent.module.css"
-import useStore from "../../context/store";
-
+import styles from "./UsersComponent.module.css";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {userAction} from "../../redux/slices/userSlice";
 
 const UsersComponent = () => {
-const {userSlice:{allUsers}} = useStore()
+    let dispatch = useAppDispatch();
+    let {users, isLoaded, error} = useAppSelector(state => state.userStore);
+
+    useEffect(() => {
+        dispatch(userAction.loadUsers())
+    }, []);
 
     return (
         <div className={styles.UserBox}>
-            {allUsers.map((user) =>
-                <UserComponent
-                    key={user.id}
-                    id={user.id}
-                    name={user.name}
-                    username={user.username}
-                    email={user.email}
-                    phone={user.phone}/>
+            {error ? (
+                <h2>{error}</h2>
+            ) : isLoaded ? (
+                users.map((user) =>
+                    <UserComponent
+                        key={user.id}
+                        id={user.id}
+                        name={user.name}
+                        username={user.username}
+                        email={user.email}
+                        phone={user.phone}/>
+                )
+            ) : (
+                <h2>...Loading</h2>
             )}
         </div>
     );

@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CommentComponent from "../CommentComponent/CommentComponent";
-import {useStore} from "../../context/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {commentAction} from "../../redux/slices/commentSlice";
+
 const CommentsComponent = () => {
 
-const {commentSlice:{allComments}} = useStore()
+    let dispatch = useAppDispatch()
+    let {comments, isLoaded, error} = useAppSelector(state => state.commentStore)
+
+    useEffect(() => {
+        dispatch(commentAction.loadComments())
+    }, []);
+
     return (
         <div>
-            {allComments.map((comment)=>
-                <CommentComponent
-                    key = {comment.id}
-                    postId={comment.postId}
-                    id={comment.id}
-                    name={comment.name}
-                    email={comment.email}
-                    body={comment.body}/>)}
+            {error ? (
+                <h2>{error}</h2>
+            ) : isLoaded ? (comments.map((comment) =>
+                    <CommentComponent
+                        key={comment.id}
+                        postId={comment.postId}
+                        id={comment.id}
+                        name={comment.name}
+                        email={comment.email}
+                        body={comment.body}/>)) :
+                (<h2>...Loading</h2>)}
         </div>
     );
 };

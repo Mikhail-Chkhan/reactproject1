@@ -1,18 +1,18 @@
-import axios, {AxiosResponse} from "axios";
-import baseURL from "../constants/baseURL";
-import IComment from "../modeles/IComment";
+import axios from "axios";
+import {baseUrl, urls} from "../constants/baseURL";
+import IComment from "../models/IComment";
 
-let AxiosInstance = axios.create({
-    baseURL: baseURL,
-    headers: {'Content-Type': 'application/json'},
-})
+let axiosInstance = axios.create({
+    baseURL: baseUrl,
+});
 
-const getComments = ():Promise<AxiosResponse<IComment[]>> => {
-    return AxiosInstance.get('/comments')
+export const commentService = {
+    getAll: async (): Promise<IComment[]> => {
+        let response = await axiosInstance.get<IComment[]>(urls.comments.base);
+        return response.data;
+    },
+    getById: async (id: number): Promise<IComment> => {
+        let response = await axiosInstance.get<IComment>(urls.comments.byId(id));
+        return response.data;
+    }
 }
-export default getComments
-
-const getCommentsByPostId = (postId:number):Promise<AxiosResponse<IComment[]>> => {
-    return AxiosInstance.get('/posts/'+postId+'/comments')
-}
-export {getCommentsByPostId}

@@ -1,23 +1,29 @@
-import React, {FC, useState} from 'react';
-import IPost from "../../modeles/IPost";
+import React, { FC, useState } from 'react';
+import IPost from "../../models/IPost";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+
 import styles from "./PostComponent.module.css";
-import {Outlet} from "react-router-dom";
-import {useStore} from "../../context/store";
-import IComment from "../../modeles/IComment";
+import { Outlet } from "react-router-dom";
+import IComment from "../../models/IComment";
 
+const PostComponent: FC<IPost> = ({ id, userId, title, body, disableFoo = false }) => {
+    const [flag, setFlag] = useState(false);
+    const [filteredComments, setFilteredComments] = useState<IComment[]>([]);
 
-const PostComponent: FC<IPost> = ({id, userId, title, body, disableFoo=false}) => {
-
-    const {postSlice:{showComments}}=useStore()
-    const [comments, setComments] = useState<IComment[]>([]);
-    const [flag, setFlag] = useState(false)
+    let dispatch = useAppDispatch();
+    const comments = useAppSelector(state => state.commentStore.comments);
 
     const handleToggleComments = () => {
-        if (disableFoo) return
-        const postComments = showComments(!flag, {id, userId, title, body})
-        setFlag(!flag)
+        if (disableFoo) return;
 
-        setComments(postComments);
+        if (!flag) {
+            const postComments = comments.filter(comment => comment.postId === id);
+            setFilteredComments(postComments);
+        } else {
+            setFilteredComments([]);
+        }
+
+        setFlag(!flag);
     };
 
     return (
@@ -26,9 +32,9 @@ const PostComponent: FC<IPost> = ({id, userId, title, body, disableFoo=false}) =
                 <h3>{title}</h3>
                 <p>{body}</p>
             </div>
-            {comments.length > 0 && (
+            {flag && filteredComments.length > 0 && (
                 <div>
-                    {comments.map(comment => (
+                    {filteredComments.map(comment => (
                         <div key={comment.id}>
                             <p>{comment.name}</p>
                             <p>{comment.body}</p>
@@ -36,7 +42,7 @@ const PostComponent: FC<IPost> = ({id, userId, title, body, disableFoo=false}) =
                     ))}
                 </div>
             )}
-            <Outlet/>
+            <Outlet />
         </>
     );
 };
