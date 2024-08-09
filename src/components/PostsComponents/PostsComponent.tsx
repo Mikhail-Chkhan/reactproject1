@@ -14,7 +14,6 @@ const PostsComponent = () => {
     let {posts, error, isLoaded} = useAppSelector(state => state.postStore)
 
 
-
     useEffect(() => {
         dispatch(commentAction.loadComments())
         if (userId) {
